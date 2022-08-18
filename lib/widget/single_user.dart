@@ -3,13 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:sample_demo/database/database_helper.dart';
 import 'package:sample_demo/model/single_user_model.dart';
 import 'package:sample_demo/model/user_details.dart';
-import 'package:sample_demo/network/user_data_provider.dart';
 
 class SingleUser extends StatelessWidget {
-  // final String url;
 
   const SingleUser({Key? key}) : super(key: key);
-  // DataBaseHelper? dbHelper = DataBaseHelper.instance;
 
   @override
   Widget build(BuildContext context) {

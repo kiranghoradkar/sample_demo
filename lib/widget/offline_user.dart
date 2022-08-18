@@ -7,7 +7,6 @@ class OfflineUserList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // UserLocalDataProvider userLocalDataProvider = Provider.of<UserLocalDataProvider>(context);
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<UserLocalDataProvider>(
@@ -18,33 +17,40 @@ class OfflineUserList extends StatelessWidget {
             return ListView.builder(
               itemCount: value.listOfLocalUsers.length,
               itemBuilder: (BuildContext context, int index) {
-                return Row(
-                  children: [
-                    value.listOfLocalUsers[index].avatarUrl == null
-                        ? Image.asset(
-                            'assets/user.png',
-                            width: 50,
-                            height: 50,
-                          )
-                        : Image.network(
-                            value.listOfLocalUsers[index].avatarUrl!,
-                            width: 50,
-                            height: 50,
-                          ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(value.listOfLocalUsers[index].name ?? ''),
-                    Text(value.listOfLocalUsers[index].email ?? ''),
-                    IconButton(
-                        onPressed: () {
-                          context
-                              .read<UserLocalDataProvider>()
-                              .deleteUser(
-                                  value.listOfLocalUsers[index].id ?? -1);
-                        },
-                        icon: const Icon(Icons.delete))
-                  ],
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Row(
+                          children: [
+                            value.listOfLocalUsers[index].avatarUrl == null
+                                ? Image.asset(
+                                    'assets/user.png',
+                                    width: 50,
+                                    height: 50,
+                                  )
+                                : Image.network(
+                                    value.listOfLocalUsers[index].avatarUrl!,
+                                    width: 50,
+                                    height: 50,
+                                  ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(value.listOfLocalUsers[index].name ?? ''),
+                            Text(value.listOfLocalUsers[index].email ?? ''),
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            context.read<UserLocalDataProvider>().deleteUser(
+                                value.listOfLocalUsers[index].id ?? -1);
+                          },
+                          icon: const Icon(Icons.delete))
+                    ],
+                  ),
                 );
               },
             );

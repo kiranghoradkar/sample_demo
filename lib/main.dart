@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_demo/network/user_data_provider.dart';
+import 'package:sample_demo/network/service.dart';
 import 'package:sample_demo/screen/home_page.dart';
 
 void main() => runApp(const MyApp());
@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Provider<UserDataProvider>(
-          create: (BuildContext context) => UserDataProvider(),
+      home: Provider<Service>(
+          create: (BuildContext context) => Service(),
           child: const HomePage()),
     );
   }
