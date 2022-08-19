@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_demo/database/database_helper.dart';
 import 'package:sample_demo/model/single_user_model.dart';
 import 'package:sample_demo/model/user_details.dart';
+import 'package:sample_demo/utils/image_utils.dart';
+import 'package:sample_demo/utils/ui_colors.dart';
+import 'package:sample_demo/utils/custom_text.dart';
 
 class SingleUser extends StatelessWidget {
-
   const SingleUser({Key? key}) : super(key: key);
 
   @override
@@ -19,21 +22,29 @@ class SingleUser extends StatelessWidget {
           child: Row(
             children: [
               value.avatarUrl == null
-                  ? Image.asset(
-                      'assets/user.png',
+                  ? const ImageUtils(
                       width: 50,
                       height: 50,
+                      imageUrl: 'assets/user.png',
+                      imageType: ImageType.image,
                     )
-                  : Image.network(
-                      value.avatarUrl!,
+                  : ImageUtils(
                       width: 50,
                       height: 50,
+                      imageUrl: value.avatarUrl!,
+                      imageType: ImageType.network,
                     ),
+
               const SizedBox(
                 width: 10,
               ),
-              Text(value.name ?? ''),
-              Text(value.email ?? ''),
+
+              CustomText(
+                text: value.name ?? '',
+                textColor: Colors.black,
+                textSize: 16,
+                fontWeight: FontWeight.w500,
+              )
             ],
           ),
           onLongPress: () async {
@@ -41,9 +52,18 @@ class SingleUser extends StatelessWidget {
                 avatarUrl: value.avatarUrl == null
                     ? 'assets/user.png'
                     : value.avatarUrl!,
-              name: value.name
-            );
+                name: value.name);
             await DataBaseHelper.instance.create(tempDetails);
+
+            Fluttertoast.showToast(
+                msg: "User added successfully",
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                backgroundColor: UIColors.background_colour,
+                textColor: UIColors.text_colour_black,
+                fontSize: 16.0
+            );
           },
         );
       },
