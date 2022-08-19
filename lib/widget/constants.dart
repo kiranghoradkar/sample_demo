@@ -1,7 +1,7 @@
 abstract class StringConstant {
   static const String apiTaken =
-      'token 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';
-  static const String somethingWentWrong = 'Something went wrong';
+      'token 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';
+  static const String somethingWentWrong = 'Token Expire please generate from your personal github';
   static const String noInternetConnection = 'No internet connection';
   static const String confermationMessage = 'Are you sure you want to delete user';
   static const String no = 'No';
