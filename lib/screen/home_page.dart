@@ -3,10 +3,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_demo/database/user_localdata_provider.dart';
 import 'package:sample_demo/model/user_details.dart';
-import 'package:sample_demo/network/service.dart';
+import 'package:sample_demo/network/network.dart';
 import 'package:sample_demo/utils/change_theme.dart';
 import 'package:sample_demo/utils/custom_text.dart';
 import 'package:sample_demo/utils/ui_colors.dart';
+import 'package:sample_demo/widget/constants.dart';
 import 'package:sample_demo/widget/offline_user.dart';
 import 'package:sample_demo/widget/online_user.dart';
 
@@ -21,7 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    Service service = Provider.of<Service>(context);
+    Network service = Provider.of<Network>(context);
     final appStyleMode = Provider.of<AppStyleModeNotifier>(context);
     return DefaultTabController(
         initialIndex: 0,
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: appStyleMode.dashboardColor,
           appBar: AppBar(
             title: CustomText(
-              text: "Users",
+              text: StringConstant.user,
               textColor: appStyleMode.primaryTextColor,
               textSize: 16,
               fontWeight: FontWeight.w500,
@@ -49,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                 Tab(
                   icon: const Icon(Icons.supervisor_account_rounded),
                   child: CustomText(
-                    text: "Online",
+                    text: StringConstant.onLineUser,
                     textColor: appStyleMode.primaryTextColor,
                     textSize: 16,
                     fontWeight: FontWeight.w500,
@@ -58,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                 Tab(
                   icon: const Icon(Icons.no_accounts_rounded),
                   child: CustomText(
-                    text: "Offline",
+                    text: StringConstant.offLineUser,
                     textColor: appStyleMode.primaryTextColor,
                     textSize: 16,
                     fontWeight: FontWeight.w500,

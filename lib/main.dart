@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_demo/network/service.dart';
+import 'package:sample_demo/network/network.dart';
 import 'package:sample_demo/screen/home_page.dart';
 import 'package:sample_demo/utils/change_theme.dart';
 
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(),
       home: MultiProvider(
         providers: [
-          Provider<Service>(create: (_) => Service()),
+          Provider<Network>(create: (_) => Network()),
           ChangeNotifierProvider<AppStyleModeNotifier>(create: (context) {
             return AppStyleModeNotifier();
           })

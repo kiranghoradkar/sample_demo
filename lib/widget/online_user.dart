@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_demo/model/single_user_model.dart';
 import 'package:sample_demo/model/user_details.dart';
-import 'package:sample_demo/network/service.dart';
+import 'package:sample_demo/network/network.dart';
 import 'package:sample_demo/widget/custom_shimmer.dart';
 import 'package:sample_demo/widget/single_user.dart';
 
@@ -13,7 +13,7 @@ class OnlineUserList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Service userDataProvider = Provider.of<Service>(context);
+    Network userDataProvider = Provider.of<Network>(context);
 
     return Consumer<List<UserDetails?>>(builder: (context, userDetails, child) {
       if (userDetails.isEmpty) {

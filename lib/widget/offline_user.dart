@@ -4,7 +4,7 @@ import 'package:sample_demo/database/user_localdata_provider.dart';
 import 'package:sample_demo/utils/change_theme.dart';
 import 'package:sample_demo/utils/custom_text.dart';
 import 'package:sample_demo/utils/image_utils.dart';
-import 'package:sample_demo/widget/dialog.dart';
+import 'package:sample_demo/widget/constants.dart';
 
 class OfflineUserList extends StatelessWidget {
   const OfflineUserList({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class OfflineUserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var bloc = context.read<UserLocalDataProvider>();
-
+    final appStyleMode = Provider.of<AppStyleModeNotifier>(context);
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<UserLocalDataProvider>(
@@ -20,7 +20,7 @@ class OfflineUserList extends StatelessWidget {
             if (value.listOfLocalUsers.isEmpty) {
               return const Center(
                 child: CustomText(
-                  text: "Users not found please add user",
+                  text: StringConstant.userNotFound,
                   textColor: Colors.black,
                   textSize: 16,
                   fontWeight: FontWeight.w500,
@@ -55,7 +55,7 @@ class OfflineUserList extends StatelessWidget {
                             const SizedBox(width: 10),
                             CustomText(
                               text: value.listOfLocalUsers[index].name ?? '',
-                              textColor: Colors.black,
+                              textColor: appStyleMode.primaryTextColor,
                               textSize: 16,
                               fontWeight: FontWeight.w500,
                             ),
@@ -67,7 +67,7 @@ class OfflineUserList extends StatelessWidget {
                             var isDeleted = await showDialog(
                               context: context,
                               builder: (BuildContext context) {
-                                return const Dialoug();
+                                return const Dialog();
                               },
                             );
 

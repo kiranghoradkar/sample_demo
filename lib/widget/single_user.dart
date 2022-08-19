@@ -8,6 +8,7 @@ import 'package:sample_demo/utils/change_theme.dart';
 import 'package:sample_demo/utils/image_utils.dart';
 import 'package:sample_demo/utils/ui_colors.dart';
 import 'package:sample_demo/utils/custom_text.dart';
+import 'package:sample_demo/widget/constants.dart';
 import 'package:sample_demo/widget/custom_shimmer.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -61,7 +62,7 @@ class SingleUser extends StatelessWidget {
               await DataBaseHelper.instance.create(tempDetails);
 
               Fluttertoast.showToast(
-                  msg: "User added successfully",
+                  msg: StringConstant.successMessage,
                   toastLength: Toast.LENGTH_LONG,
                   gravity: ToastGravity.BOTTOM,
                   timeInSecForIosWeb: 1,

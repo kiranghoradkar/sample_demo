@@ -6,7 +6,8 @@ class AppStyleModeNotifier extends ChangeNotifier {
   Color primaryBackgroundColor = Colors.white;
   Color appBarBackgroundColor = Colors.cyan;
   Color boxTextColor = Colors.indigo;
-  Color primaryTextColor = Colors.black;
+  Color? primaryTextColor;
+  Color textColor = Colors.white;
   Color dashboardColor = Colors.white;
 
   switchMode() {
@@ -16,12 +17,14 @@ class AppStyleModeNotifier extends ChangeNotifier {
       appBarBackgroundColor = Colors.black;
       boxTextColor = Colors.black;
       primaryTextColor = Colors.white;
+      textColor = Colors.white;
       dashboardColor = Colors.black;
 
       mode = false;
     } else {
       //if it is dark mode currently switch to light
       primaryBackgroundColor = Colors.white;
+      textColor = Colors.white;
       appBarBackgroundColor = Colors.cyan;
       boxTextColor = Colors.indigo;
       primaryTextColor = Colors.black;

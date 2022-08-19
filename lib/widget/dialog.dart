@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:sample_demo/utils/custom_text.dart';
+import 'package:sample_demo/widget/constants.dart';
 
-class Dialoug extends StatefulWidget {
-  const Dialoug({Key? key}) : super(key: key);
+class Dialog extends StatefulWidget {
+  const Dialog({Key? key}) : super(key: key);
 
   @override
-  State<Dialoug> createState() => _DialougState();
+  State<Dialog> createState() => _DialogState();
 }
 
-class _DialougState extends State<Dialoug> {
+class _DialogState extends State<Dialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const CustomText(
-        text: "Are you sure you want to delete user",
+        text: StringConstant.confermationMessage,
         textColor: Colors.black,
         textSize: 16,
         fontWeight: FontWeight.w500,
@@ -21,7 +22,7 @@ class _DialougState extends State<Dialoug> {
       actions: <Widget>[
         TextButton(
           child: const CustomText(
-            text: "No",
+            text: StringConstant.no,
             textColor: Colors.black,
             textSize: 16,
             fontWeight: FontWeight.w500,
@@ -32,7 +33,7 @@ class _DialougState extends State<Dialoug> {
         ),
         TextButton(
           child: const CustomText(
-            text: "Yes",
+            text: StringConstant.yes,
             textColor: Colors.black,
             textSize: 16,
             fontWeight: FontWeight.w500,

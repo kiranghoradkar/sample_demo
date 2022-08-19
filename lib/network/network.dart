@@ -4,16 +4,17 @@ import 'package:http/http.dart' as http;
 import 'package:sample_demo/model/single_user_model.dart';
 import 'package:sample_demo/model/user_details.dart';
 import 'package:sample_demo/utils/utils.dart';
+import 'package:sample_demo/widget/constants.dart';
 
 /// This is the class for API calling
-class Service {
+class Network {
 
   // Method fetch user data
   Future<List<UserDetails?>> fetchUser() async {
     if (await Utils.checkInternetConnection()) {
       final response =
           await http.get(Uri.parse('https://api.github.com/users'), headers: {
-        'Authorization': 'token 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',
+        'Authorization': StringConstant.apiTaken,
       });
       if (response.statusCode == 200) {
         Iterable l = json.decode(response.body);
@@ -21,11 +22,10 @@ class Service {
             l.map((model) => UserDetails.fromJson(model)));
         return posts;
       } else {
-        throw Exception('Failed');
+        throw Exception(StringConstant.somethingWentWrong);
       }
     } else {
-      debugPrint('No internet connection');
-      throw Exception('No internet connection');
+      throw Exception(StringConstant.noInternetConnection);
     }
   }
 
@@ -33,16 +33,16 @@ class Service {
   Future<SingleUserModel> fetchSingleUser(String url) async {
     if (await Utils.checkInternetConnection()) {
       final response = await http.get(Uri.parse(url), headers: {
-        'Authorization': 'token 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',
+        'Authorization': StringConstant.apiTaken,
       });
       if (response.statusCode == 200) {
         var user = SingleUserModel.fromJson(jsonDecode(response.body));
         return user;
       } else {
-        throw Exception('Failed');
+        throw Exception(StringConstant.somethingWentWrong);
       }
     } else {
-      throw Exception('No internet connection');
+      throw Exception(StringConstant.noInternetConnection);
     }
   }
 }
