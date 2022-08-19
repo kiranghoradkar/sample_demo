@@ -5,13 +5,15 @@ import 'package:sample_demo/model/single_user_model.dart';
 import 'package:sample_demo/model/user_details.dart';
 import 'package:sample_demo/utils/utils.dart';
 
+/// This is the class for API calling
 class Service {
-  // Fetch user data
+
+  // Method fetch user data
   Future<List<UserDetails?>> fetchUser() async {
     if (await Utils.checkInternetConnection()) {
       final response =
           await http.get(Uri.parse('https://api.github.com/users'), headers: {
-        'Authorization': 'token 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',
+        'Authorization': 'token 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',
       });
       if (response.statusCode == 200) {
         Iterable l = json.decode(response.body);
@@ -27,11 +29,11 @@ class Service {
     }
   }
 
-  // Fetch Single user
+  // Method to fetch Single user
   Future<SingleUserModel> fetchSingleUser(String url) async {
     if (await Utils.checkInternetConnection()) {
       final response = await http.get(Uri.parse(url), headers: {
-        'Authorization': 'token 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',
+        'Authorization': 'token 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',
       });
       if (response.statusCode == 200) {
         var user = SingleUserModel.fromJson(jsonDecode(response.body));

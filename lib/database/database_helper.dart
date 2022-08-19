@@ -14,6 +14,7 @@ class DataBaseHelper {
 
   static Database? dataBase;
 
+  // Method to initialize database
   Future<Database> get database async {
     if (dataBase != null) return dataBase!;
     dataBase = await initializeDataBase();
@@ -59,7 +60,6 @@ class DataBaseHelper {
         .delete(userTable, where: '${UserFields.id} = ?', whereArgs: [id]);
     return idUser;
   }
-
 
   Future close() async {
     final db = await instance.database;

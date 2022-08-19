@@ -4,7 +4,7 @@ import 'package:sample_demo/utils/ui_colors.dart';
 class CustomText extends StatelessWidget {
   final String text;
   final double textSize;
-  final Color textColor;
+  final Color? textColor;
   final FontWeight fontWeight;
   final FontStyle fontStyle;
   final TextAlign textAlign;
@@ -16,7 +16,7 @@ class CustomText extends StatelessWidget {
       {Key? key,
       this.text = '',
       this.textSize = 0,
-      this.textColor = UIColors.text_colour_grey,
+      this.textColor,
       this.fontWeight = FontWeight.w300,
       this.fontStyle = FontStyle.normal,
       this.textAlign = TextAlign.start,

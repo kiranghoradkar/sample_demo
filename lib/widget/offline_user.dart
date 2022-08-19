@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_demo/database/user_localdata_provider.dart';
+import 'package:sample_demo/utils/change_theme.dart';
 import 'package:sample_demo/utils/custom_text.dart';
 import 'package:sample_demo/utils/image_utils.dart';
 import 'package:sample_demo/widget/dialog.dart';
@@ -11,13 +12,20 @@ class OfflineUserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var bloc = context.read<UserLocalDataProvider>();
+
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<UserLocalDataProvider>(
           builder: (BuildContext context, value, Widget? child) {
             if (value.listOfLocalUsers.isEmpty) {
               return const Center(
-                  child: Text('Users not found please add user'));
+                child: CustomText(
+                  text: "Users not found please add user",
+                  textColor: Colors.black,
+                  textSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              );
             }
             return ListView.builder(
               itemCount: value.listOfLocalUsers.length,
@@ -59,7 +67,7 @@ class OfflineUserList extends StatelessWidget {
                             var isDeleted = await showDialog(
                               context: context,
                               builder: (BuildContext context) {
-                                return const PopUp();
+                                return const Dialoug();
                               },
                             );
 
@@ -76,32 +84,5 @@ class OfflineUserList extends StatelessWidget {
             );
           },
         ));
-  }
-
-  Future<void> showMyDialog(context, value, index) async {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Are you sure you want to delete user'),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('No'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: const Text('Yes'),
-              onPressed: () {
-                context
-                    .read<UserLocalDataProvider>()
-                    .deleteUser(value.listOfLocalUsers[index].id ?? -1);
-              },
-            )
-          ],
-        );
-      },
-    );
   }
 }

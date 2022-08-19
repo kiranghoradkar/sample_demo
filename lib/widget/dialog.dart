@@ -1,30 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:sample_demo/utils/custom_text.dart';
 
-class PopUp extends StatefulWidget {
-  const PopUp({Key? key}) : super(key: key);
+class Dialoug extends StatefulWidget {
+  const Dialoug({Key? key}) : super(key: key);
 
   @override
-  State<PopUp> createState() => _PopUpState();
+  State<Dialoug> createState() => _DialougState();
 }
 
-class _PopUpState extends State<PopUp> {
+class _DialougState extends State<Dialoug> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Are you sure you want to delete user'),
+      title: const CustomText(
+        text: "Are you sure you want to delete user",
+        textColor: Colors.black,
+        textSize: 16,
+        fontWeight: FontWeight.w500,
+      ),
       actions: <Widget>[
         TextButton(
-          child: const Text('No'),
+          child: const CustomText(
+            text: "No",
+            textColor: Colors.black,
+            textSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         TextButton(
-          child: const Text('Yes'),
+          child: const CustomText(
+            text: "Yes",
+            textColor: Colors.black,
+            textSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
           onPressed: () {
-            // context
-            //     .read<UserLocalDataProvider>()
-            //     .deleteUser(value.listOfLocalUsers[widget.index].id ?? -1);
             Navigator.of(context).pop(true);
           },
         )
